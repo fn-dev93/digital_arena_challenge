@@ -1,0 +1,53 @@
+name: digital_arena_challenge
+description: A Flutter Pokemon app using Clean Architecture and PokeAPI
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  
+  # Internationalization
+  intl: ^0.20.2
+  
+  # State Management
+  flutter_bloc: ^8.1.3
+  
+  # Dependency Injection
+  get_it: ^7.6.4
+  
+  # Network
+  http: ^1.1.0
+  
+  # Functional Programming
+  dartz: ^0.10.1
+  
+  # Value Equality
+  equatable: ^2.0.5
+  
+  # UI
+  cached_network_image: ^3.3.0
+  
+  # Navigation
+  go_router: ^14.0.0
+  
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  
+  # Testing
+  mockito: ^5.4.4
+  build_runner: ^2.4.7
+  bloc_test: ^9.1.5
+
+flutter:
+  uses-material-design: true
+  generate: true

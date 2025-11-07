@@ -1,0 +1,92 @@
+{
+  "@@locale": "en",
+  "appTitle": "Pokédex - Digital Arena Challenge",
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+  "error": "Error",
+  "@error": {
+    "description": "Error title"
+  },
+  "pageNotFound": "Page not found: {uri}",
+  "@pageNotFound": {
+    "description": "Message when page is not found",
+    "placeholders": {
+      "uri": {
+        "type": "String"
+      }
+    }
+  },
+  "goToHome": "Go to Home",
+  "@goToHome": {
+    "description": "Button to go to home page"
+  },
+  "pokedex": "Pokédex",
+  "@pokedex": {
+    "description": "Pokédex title"
+  },
+  "retry": "Retry",
+  "@retry": {
+    "description": "Retry button"
+  },
+  "physicalAttributes": "Physical Attributes",
+  "@physicalAttributes": {
+    "description": "Physical attributes section title"
+  },
+  "height": "Height",
+  "@height": {
+    "description": "Height label"
+  },
+  "weight": "Weight",
+  "@weight": {
+    "description": "Weight label"
+  },
+  "abilities": "Abilities",
+  "@abilities": {
+    "description": "Abilities section title"
+  },
+  "baseStats": "Base Stats",
+  "@baseStats": {
+    "description": "Base stats section title"
+  },
+  "hp": "HP",
+  "@hp": {
+    "description": "HP stat"
+  },
+  "attack": "Attack",
+  "@attack": {
+    "description": "Attack stat"
+  },
+  "defense": "Defense",
+  "@defense": {
+    "description": "Defense stat"
+  },
+  "specialAttack": "Sp. Attack",
+  "@specialAttack": {
+    "description": "Special Attack stat"
+  },
+  "specialDefense": "Sp. Defense",
+  "@specialDefense": {
+    "description": "Special Defense stat"
+  },
+  "speed": "Speed",
+  "@speed": {
+    "description": "Speed stat"
+  },
+  "networkError": "Network error. Please check your connection.",
+  "@networkError": {
+    "description": "Network error message"
+  },
+  "serverError": "Server error. Please try again later.",
+  "@serverError": {
+    "description": "Server error message"
+  },
+  "cacheError": "Failed to load cached data.",
+  "@cacheError": {
+    "description": "Cache error message"
+  },
+  "unexpectedError": "An unexpected error occurred.",
+  "@unexpectedError": {
+    "description": "Unexpected error message"
+  }
+}
