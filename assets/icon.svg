@@ -1,0 +1,19 @@
+<svg width="1024" height="1024" xmlns="http://www.w3.org/2000/svg">
+  <!-- White background circle -->
+  <circle cx="512" cy="512" r="512" fill="#FFFFFF"/>
+  
+  <!-- Top half (red) - using proper circular path -->
+  <path d="M 512,0 A 512,512 0 0,1 1024,512 L 0,512 A 512,512 0 0,1 512,0 Z" fill="#EF5350"/>
+  
+  <!-- Middle black line -->
+  <rect x="0" y="461" width="1024" height="102" fill="#000000"/>
+  
+  <!-- Center button - outer black circle -->
+  <circle cx="512" cy="512" r="154" fill="#000000"/>
+  
+  <!-- Center button - middle white circle -->
+  <circle cx="512" cy="512" r="123" fill="#FFFFFF"/>
+  
+  <!-- Center button - inner gray border -->
+  <circle cx="512" cy="512" r="82" fill="none" stroke="#BDBDBD" stroke-width="12"/>
+</svg>

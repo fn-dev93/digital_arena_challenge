@@ -11,14 +11,20 @@ import '../../features/pokemon/presentation/pages/pokemon_list/pokemon_list_page
 import '../../features/pokemon/presentation/pages/pokemon_detail/pokemon_detail_page.dart';
 import '../../injection_container.dart';
 import '../presentation/pages/error_page.dart';
+import '../presentation/pages/splash_page.dart';
 
 /// Router configuration for the application
 class AppRouter {
   /// Creates the GoRouter instance with all route definitions
   static GoRouter createRouter() {
     return GoRouter(
-      initialLocation: '/',
+      initialLocation: '/splash',
       routes: [
+        GoRoute(
+          path: '/splash',
+          name: 'splash',
+          builder: (context, state) => const SplashPage(),
+        ),
         GoRoute(
           path: '/',
           name: 'home',
