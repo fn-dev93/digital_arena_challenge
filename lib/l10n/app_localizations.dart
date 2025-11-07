@@ -223,6 +223,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'An unexpected error occurred.'**
   String get unexpectedError;
+
+  /// Message to press back again to exit the app
+  ///
+  /// In en, this message translates to:
+  /// **'Press back again to exit'**
+  String get pressAgainToExit;
 }
 
 class _AppLocalizationsDelegate

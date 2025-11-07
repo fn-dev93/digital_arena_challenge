@@ -44,7 +44,7 @@ class ErrorPage extends StatelessWidget {
                 mobile: 16.0,
                 tablet: 20.0,
                 desktop: 24.0,
-              )),
+              ),),
               Text(
                 l10n.pageNotFound(errorMessage),
                 style: TextStyle(fontSize: ResponsiveFontSize.body(context)),
@@ -55,7 +55,7 @@ class ErrorPage extends StatelessWidget {
                 mobile: 16.0,
                 tablet: 20.0,
                 desktop: 24.0,
-              )),
+              ),),
               ElevatedButton(
                 onPressed: () => context.go('/'),
                 child: Text(l10n.goToHome),

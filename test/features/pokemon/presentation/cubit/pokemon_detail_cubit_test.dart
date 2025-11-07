@@ -32,13 +32,13 @@ void main() {
       'should emit [Loading, Loaded] when data is gotten successfully',
       build: () {
         when(mockGetPokemonDetail(any))
-            .thenAnswer((_) async => Right(tPokemon));
+            .thenAnswer((_) async => const Right(tPokemon));
         return cubit;
       },
       act: (cubit) => cubit.loadPokemonDetail(tPokemonId),
       expect: () => [
         PokemonDetailLoading(),
-        PokemonDetailLoaded(tPokemon),
+        const PokemonDetailLoaded(tPokemon),
       ],
     );
 
@@ -46,7 +46,7 @@ void main() {
       'should emit [Loading, Error] when getting data fails',
       build: () {
         when(mockGetPokemonDetail(any))
-            .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+            .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
         return cubit;
       },
       act: (cubit) => cubit.loadPokemonDetail(tPokemonId),
@@ -60,7 +60,7 @@ void main() {
       'should emit Error with cache failure message when cache fails',
       build: () {
         when(mockGetPokemonDetail(any))
-            .thenAnswer((_) async => Left(CacheFailure('Cache Failure')));
+            .thenAnswer((_) async => const Left(CacheFailure('Cache Failure')));
         return cubit;
       },
       act: (cubit) => cubit.loadPokemonDetail(tPokemonId),
@@ -74,7 +74,7 @@ void main() {
       'should emit Error with network failure message when network fails',
       build: () {
         when(mockGetPokemonDetail(any))
-            .thenAnswer((_) async => Left(NetworkFailure('Network Failure')));
+            .thenAnswer((_) async => const Left(NetworkFailure('Network Failure')));
         return cubit;
       },
       act: (cubit) => cubit.loadPokemonDetail(tPokemonId),

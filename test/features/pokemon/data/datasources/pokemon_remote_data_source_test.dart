@@ -51,7 +51,7 @@ void main() {
       // assert
       verify(mockHttpClient.get(
         Uri.parse(ApiConstants.getPokemonListUrl(limit: 20, offset: 0)),
-      ));
+      ),);
     });
 
     test('should return list of PokemonSummaryModel when response code is 200',
@@ -118,7 +118,7 @@ void main() {
       // assert
       verify(mockHttpClient.get(
         Uri.parse(ApiConstants.getPokemonUrl(tId)),
-      ));
+      ),);
     });
 
     test('should return PokemonModel when response code is 200', () async {

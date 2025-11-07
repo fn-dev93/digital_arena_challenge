@@ -44,7 +44,7 @@ void main() {
       when(mockRemoteDataSource.getPokemonList(
         limit: anyNamed('limit'),
         offset: anyNamed('offset'),
-      )).thenAnswer((_) async => tPokemonSummaryList);
+      ),).thenAnswer((_) async => tPokemonSummaryList);
 
       // act
       await repository.getPokemonList(limit: tLimit, offset: tOffset);
@@ -65,7 +65,7 @@ void main() {
         when(mockRemoteDataSource.getPokemonList(
           limit: anyNamed('limit'),
           offset: anyNamed('offset'),
-        )).thenAnswer((_) async => tPokemonSummaryList);
+        ),).thenAnswer((_) async => tPokemonSummaryList);
 
         // act
         final result =
@@ -73,7 +73,7 @@ void main() {
 
         // assert
         verify(mockRemoteDataSource.getPokemonList(
-            limit: tLimit, offset: tOffset));
+            limit: tLimit, offset: tOffset,),);
         expect(result, equals(const Right(tPokemonSummaryList)));
       });
 
@@ -84,7 +84,7 @@ void main() {
         when(mockRemoteDataSource.getPokemonList(
           limit: anyNamed('limit'),
           offset: anyNamed('offset'),
-        )).thenThrow(ServerException('Server error'));
+        ),).thenThrow(ServerException('Server error'));
 
         // act
         final result =
@@ -92,7 +92,7 @@ void main() {
 
         // assert
         verify(mockRemoteDataSource.getPokemonList(
-            limit: tLimit, offset: tOffset));
+            limit: tLimit, offset: tOffset,),);
         expect(result, equals(const Left(ServerFailure('Server error'))));
       });
 
@@ -103,7 +103,7 @@ void main() {
         when(mockRemoteDataSource.getPokemonList(
           limit: anyNamed('limit'),
           offset: anyNamed('offset'),
-        )).thenThrow(NetworkException('Network error'));
+        ),).thenThrow(NetworkException('Network error'));
 
         // act
         final result =
@@ -127,7 +127,7 @@ void main() {
         // assert
         verifyZeroInteractions(mockRemoteDataSource);
         expect(result,
-            equals(const Left(NetworkFailure('No internet connection'))));
+            equals(const Left(NetworkFailure('No internet connection'))),);
       });
     });
   });
@@ -219,7 +219,7 @@ void main() {
         // assert
         verifyZeroInteractions(mockRemoteDataSource);
         expect(result,
-            equals(const Left(NetworkFailure('No internet connection'))));
+            equals(const Left(NetworkFailure('No internet connection'))),);
       });
     });
   });

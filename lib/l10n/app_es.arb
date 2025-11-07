@@ -20,5 +20,6 @@
   "networkError": "Error de red. Por favor verifica tu conexión.",
   "serverError": "Error del servidor. Por favor intenta más tarde.",
   "cacheError": "Error al cargar datos en caché.",
-  "unexpectedError": "Ocurrió un error inesperado."
+  "unexpectedError": "Ocurrió un error inesperado.",
+  "pressAgainToExit": "Presiona atrás nuevamente para salir"
 }

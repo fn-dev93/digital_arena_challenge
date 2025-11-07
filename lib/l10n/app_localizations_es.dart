@@ -72,4 +72,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get unexpectedError => 'Ocurrió un error inesperado.';
+
+  @override
+  String get pressAgainToExit => 'Presiona atrás nuevamente para salir';
 }

@@ -21,6 +21,12 @@ class _LoadingIndicatorState extends State<LoadingIndicator>
   }
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Center(
       child: AnimatedBuilder(

@@ -33,7 +33,7 @@ void main() {
     when(mockRepository.getPokemonList(
       limit: anyNamed('limit'),
       offset: anyNamed('offset'),
-    )).thenAnswer((_) async => const Right(tPokemonList));
+    ),).thenAnswer((_) async => const Right(tPokemonList));
 
     // act
     final result = await usecase(const Params(limit: tLimit, offset: tOffset));

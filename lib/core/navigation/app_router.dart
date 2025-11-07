@@ -33,12 +33,14 @@ class AppRouter {
           builder: (context, state) {
             final id = int.parse(state.pathParameters['id']!);
             final name = state.uri.queryParameters['name'] ?? '';
+            final imageUrl = state.uri.queryParameters['imageUrl'];
 
             return BlocProvider(
               create: (_) => sl<PokemonDetailCubit>()..loadPokemonDetail(id),
               child: PokemonDetailPage(
                 pokemonId: id,
                 pokemonName: name,
+                imageUrl: imageUrl,
               ),
             );
           },

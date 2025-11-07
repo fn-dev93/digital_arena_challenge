@@ -15,6 +15,7 @@ class PokemonListPage extends StatefulWidget {
 
 class _PokemonListPageState extends State<PokemonListPage> {
   final ScrollController _scrollController = ScrollController();
+  DateTime? _lastPressedAt;
 
   @override
   void initState() {
@@ -46,91 +47,119 @@ class _PokemonListPageState extends State<PokemonListPage> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(l10n.pokedex),
-        centerTitle: true,
-        backgroundColor: Colors.red,
-        foregroundColor: Colors.white,
-      ),
-      body: BlocBuilder<PokemonListCubit, PokemonListState>(
-        builder: (context, state) {
-          if (state is PokemonListLoading) {
-            return const LoadingIndicator();
-          }
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        if (didPop) return;
 
-          if (state is PokemonListError) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(Icons.error_outline, size: 64, color: Colors.red),
-                  const SizedBox(height: 16),
-                  Text(
-                    state.message,
-                    style: const TextStyle(fontSize: 16),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 16),
-                  ElevatedButton(
-                    onPressed: () {
-                      context.read<PokemonListCubit>().loadPokemonList();
-                    },
-                    child: Text(l10n.retry),
-                  ),
-                ],
-              ),
-            );
-          }
+        final now = DateTime.now();
+        final backButtonHasNotBeenPressedOrSnackBarHasBeenClosed =
+            _lastPressedAt == null ||
+                now.difference(_lastPressedAt!) > const Duration(seconds: 2);
 
-          if (state is PokemonListLoaded) {
-            return GridView.builder(
-              controller: _scrollController,
-              padding: ResponsivePadding.all(context),
-              gridDelegate: ResponsiveGridDelegate(
-                context: context,
-                mobileColumns: 2,
-                tabletColumns: 3,
-                desktopColumns: 4,
-                largeDesktopColumns: 6,
-                childAspectRatio: 0.85,
-                crossAxisSpacing: context.responsive(
-                  mobile: 12.0,
-                  tablet: 16.0,
-                  desktop: 20.0,
+        if (backButtonHasNotBeenPressedOrSnackBarHasBeenClosed) {
+          _lastPressedAt = now;
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(l10n.pressAgainToExit),
+              duration: const Duration(seconds: 2),
+            ),
+          );
+        } else {
+          Navigator.of(context).pop();
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(l10n.pokedex),
+          centerTitle: true,
+          backgroundColor: Colors.red,
+          foregroundColor: Colors.white,
+        ),
+        body: BlocBuilder<PokemonListCubit, PokemonListState>(
+          builder: (context, state) {
+            if (state is PokemonListLoading) {
+              return const LoadingIndicator();
+            }
+
+            if (state is PokemonListError) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      Icons.error_outline,
+                      size: 64,
+                      color: Colors.red,
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      state.message,
+                      style: const TextStyle(fontSize: 16),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 16),
+                    ElevatedButton(
+                      onPressed: () {
+                        context.read<PokemonListCubit>().loadPokemonList();
+                      },
+                      child: Text(l10n.retry),
+                    ),
+                  ],
                 ),
-                mainAxisSpacing: context.responsive(
-                  mobile: 12.0,
-                  tablet: 16.0,
-                  desktop: 20.0,
+              );
+            }
+
+            if (state is PokemonListLoaded) {
+              return GridView.builder(
+                controller: _scrollController,
+                padding: ResponsivePadding.all(context),
+                gridDelegate: ResponsiveGridDelegate(
+                  context: context,
+                  mobileColumns: 2,
+                  tabletColumns: 3,
+                  desktopColumns: 4,
+                  largeDesktopColumns: 6,
+                  childAspectRatio: 0.85,
+                  crossAxisSpacing: context.responsive(
+                    mobile: 12.0,
+                    tablet: 16.0,
+                    desktop: 20.0,
+                  ),
+                  mainAxisSpacing: context.responsive(
+                    mobile: 12.0,
+                    tablet: 16.0,
+                    desktop: 20.0,
+                  ),
                 ),
-              ),
-              itemCount: state.hasReachedMax
-                  ? state.pokemons.length
-                  : state.pokemons.length + 2,
-              itemBuilder: (context, index) {
-                if (index >= state.pokemons.length) {
-                  return const Center(
-                    child: SizedBox(
-                      width: 32,
-                      height: 32,
-                      child: LoadingIndicator(),
+                itemCount: state.hasReachedMax
+                    ? state.pokemons.length
+                    : state.pokemons.length + 2,
+                itemBuilder: (context, index) {
+                  if (index >= state.pokemons.length) {
+                    return const Center(
+                      child: SizedBox(
+                        width: 32,
+                        height: 32,
+                        child: LoadingIndicator(),
+                      ),
+                    );
+                  }
+
+                  final pokemon = state.pokemons[index];
+                  return PokemonCard(
+                    pokemon: pokemon,
+                    onTap: () => context.push(
+                      '/pokemon/${pokemon.id}?name=${pokemon.name}&imageUrl=${Uri.encodeComponent(pokemon.imageUrl)}',
                     ),
                   );
-                }
+                },
+              );
+            }
 
-                final pokemon = state.pokemons[index];
-                return PokemonCard(
-                  pokemon: pokemon,
-                  onTap: () =>
-                      context.go('/pokemon/${pokemon.id}?name=${pokemon.name}'),
-                );
-              },
-            );
-          }
-
-          return const SizedBox();
-        },
+            return const SizedBox();
+          },
+        ),
       ),
     );
   }

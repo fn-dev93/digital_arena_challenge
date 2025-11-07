@@ -31,13 +31,13 @@ void main() {
       'should emit [Loading, Loaded] when data is gotten successfully',
       build: () {
         when(mockGetPokemonList(any))
-            .thenAnswer((_) async => Right(tPokemonSummaryList));
+            .thenAnswer((_) async => const Right(tPokemonSummaryList));
         return cubit;
       },
       act: (cubit) => cubit.loadPokemonList(),
       expect: () => [
         PokemonListLoading(),
-        PokemonListLoaded(pokemons: tPokemonSummaryList),
+        const PokemonListLoaded(pokemons: tPokemonSummaryList),
       ],
     );
 
@@ -45,7 +45,7 @@ void main() {
       'should emit [Loading, Error] when getting data fails',
       build: () {
         when(mockGetPokemonList(any))
-            .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+            .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
         return cubit;
       },
       act: (cubit) => cubit.loadPokemonList(),
@@ -59,13 +59,13 @@ void main() {
       'should load more pokemon when loadMorePokemon is called',
       build: () {
         when(mockGetPokemonList(any))
-            .thenAnswer((_) async => Right(tPokemonSummaryList));
+            .thenAnswer((_) async => const Right(tPokemonSummaryList));
         return cubit;
       },
-      seed: () => PokemonListLoaded(pokemons: tPokemonSummaryList),
+      seed: () => const PokemonListLoaded(pokemons: tPokemonSummaryList),
       act: (cubit) => cubit.loadMorePokemon(),
       expect: () => [
-        PokemonListLoaded(
+        const PokemonListLoaded(
           pokemons: [...tPokemonSummaryList, ...tPokemonSummaryList],
         ),
       ],
@@ -78,10 +78,10 @@ void main() {
             .thenAnswer((_) async => const Right(<PokemonSummary>[]));
         return cubit;
       },
-      seed: () => PokemonListLoaded(pokemons: tPokemonSummaryList),
+      seed: () => const PokemonListLoaded(pokemons: tPokemonSummaryList),
       act: (cubit) => cubit.loadMorePokemon(),
       expect: () => [
-        PokemonListLoaded(
+        const PokemonListLoaded(
           pokemons: tPokemonSummaryList,
           hasReachedMax: true,
         ),
@@ -93,7 +93,7 @@ void main() {
       build: () {
         return cubit;
       },
-      seed: () => PokemonListLoaded(
+      seed: () => const PokemonListLoaded(
         pokemons: tPokemonSummaryList,
         hasReachedMax: true,
       ),

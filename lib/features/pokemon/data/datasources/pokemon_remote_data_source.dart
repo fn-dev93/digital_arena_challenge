@@ -43,7 +43,7 @@ class PokemonRemoteDataSourceImpl implements PokemonRemoteDataSource {
         }).toList();
       } else {
         throw ServerException(
-            'Failed to load Pokemon list: ${response.statusCode}');
+            'Failed to load Pokemon list: ${response.statusCode}',);
       }
     } catch (e) {
       if (e is ServerException) rethrow;
@@ -62,7 +62,7 @@ class PokemonRemoteDataSourceImpl implements PokemonRemoteDataSource {
         return PokemonModel.fromJson(jsonData);
       } else {
         throw ServerException(
-            'Failed to load Pokemon detail: ${response.statusCode}');
+            'Failed to load Pokemon detail: ${response.statusCode}',);
       }
     } catch (e) {
       if (e is ServerException) rethrow;

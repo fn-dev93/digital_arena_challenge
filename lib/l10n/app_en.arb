@@ -88,5 +88,9 @@
   "unexpectedError": "An unexpected error occurred.",
   "@unexpectedError": {
     "description": "Unexpected error message"
+  },
+  "pressAgainToExit": "Press back again to exit",
+  "@pressAgainToExit": {
+    "description": "Message to press back again to exit the app"
   }
 }

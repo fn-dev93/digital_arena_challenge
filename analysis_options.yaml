@@ -8,3 +8,6 @@ linter:
     avoid_unnecessary_containers: true
     prefer_single_quotes: true
     use_key_in_widget_constructors: true
+    prefer_final_fields: true
+    unnecessary_this: true
+    require_trailing_commas: true

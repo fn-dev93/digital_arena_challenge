@@ -49,7 +49,7 @@ class PokemonListCubit extends Cubit<PokemonListState> {
           emit(currentState.copyWith(
             pokemons: List<PokemonSummary>.from(currentState.pokemons)
               ..addAll(newPokemons),
-          ));
+          ),);
         }
       },
     );
